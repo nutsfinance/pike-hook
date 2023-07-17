@@ -1,0 +1,22 @@
+[package]
+name = "pike-bot"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+env_logger = "0.9"
+async-recursion = "0.3.2"
+ethers = { git = "https://github.com/gakonst/ethers-rs" }
+anyhow = "1.0.39"
+dotenv = "0.15"
+tokio = { version = "1.5", features = ["macros", "rt-multi-thread"] }
+serde = { version = "1.0.124", features = ["derive"] }
+serde_json = "1.0.64"
+convert_case = "0.1.0"
+futures = "0.3.17"
+once_cell = { version = "1.8.0" }
+tokio-amqp = "1.0.0"
+lapin = "1.8.0"
+hex = "0.4"
