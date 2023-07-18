@@ -1,0 +1,460 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "uint16",
+        "name": "newChainId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "address",
+        "name": "_hub",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "enum DataTypes.Action",
+            "name": "action",
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "borrowAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "borrowTypeStable",
+            "type": "bool"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint16",
+            "name": "sourceChainId",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint16",
+            "name": "targetChainId",
+            "type": "uint16"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct DataTypes.SpokeBorrowForward",
+        "name": "params",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "sourceAddress",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "sourceChainId",
+        "type": "uint16"
+      }
+    ],
+    "name": "BorrowForwarded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "enum DataTypes.Action",
+            "name": "action",
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "borrowAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "borrowTypeStable",
+            "type": "bool"
+          },
+          {
+            "internalType": "address",
+            "name": "targetAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint16",
+            "name": "sourceChainId",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint16",
+            "name": "targetChainId",
+            "type": "uint16"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct DataTypes.HubBorrow",
+        "name": "params",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "sourceAddress",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "sourceChainId",
+        "type": "uint16"
+      }
+    ],
+    "name": "BorrowRequested",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "enum DataTypes.Action",
+            "name": "action",
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "pikeToken",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "previousAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amountDeposited",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint16",
+            "name": "sourceChainId",
+            "type": "uint16"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct DataTypes.HubDeposit",
+        "name": "params",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "sourceAddress",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "sourceChainId",
+        "type": "uint16"
+      }
+    ],
+    "name": "DepositReceivedOnHub",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "name": "IncomingMessage",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "sourceChainId",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "payload",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum DataTypes.Action",
+        "name": "selector",
+        "type": "uint8"
+      }
+    ],
+    "name": "MessageReceived",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "targetChainId",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "payload",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "refundAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "fallbackAddress",
+        "type": "address"
+      }
+    ],
+    "name": "MessageSent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnerChanged",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "enum DataTypes.Transport",
+        "name": "transport",
+        "type": "uint8"
+      },
+      {
+        "internalType": "contract IChannel",
+        "name": "channel",
+        "type": "address"
+      }
+    ],
+    "name": "addChannel",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "chainId",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "channelAddr",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "status",
+        "type": "bool"
+      }
+    ],
+    "name": "changeChannelAuthorizedStatus",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "changeOwner",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "payload",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes[]",
+        "name": "",
+        "type": "bytes[]"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "sourceAddress",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint16",
+        "name": "sourceChainId",
+        "type": "uint16"
+      }
+    ],
+    "name": "pike_receive",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "enum DataTypes.Transport",
+        "name": "channel",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint16",
+        "name": "targetChainId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "bytes",
+        "name": "payload",
+        "type": "bytes"
+      },
+      {
+        "internalType": "address payable",
+        "name": "refundAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "fallbackAddress",
+        "type": "address"
+      }
+    ],
+    "name": "pike_send",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "enum DataTypes.Transport",
+        "name": "channel",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint16",
+        "name": "targetChainId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "bytes",
+        "name": "payload",
+        "type": "bytes"
+      },
+      {
+        "internalType": "address payable",
+        "name": "refundAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "fallbackAddress",
+        "type": "address"
+      }
+    ],
+    "name": "pike_send_intrachain",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_spoke",
+        "type": "address"
+      }
+    ],
+    "name": "setLocalSpoke",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "receive"
+  }
+]
