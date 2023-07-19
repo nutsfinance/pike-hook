@@ -1,6 +1,6 @@
-# 🤖 Piker
+# 🤖 Hook
 
-Jumpstart your next liquidation bot with Piker
+Jumpstart your next liquidation bot with Hook
 
 ### Description
 
